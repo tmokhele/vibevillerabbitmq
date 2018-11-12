@@ -1,0 +1,11 @@
+version: '2'
+services:
+  rabbitmq-user-registration:
+    image: rabbitmq:management
+    ports:
+    - 15672:15672/tcp
+    - 5672:5672/tcp
+    labels:
+      id: rabbitmq
+      io.rancher.container.pull_image: always
+
