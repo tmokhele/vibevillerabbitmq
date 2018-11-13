@@ -1,8 +1,6 @@
 version: '2'
 services:
   vibeville-user-registration:
-    depends_on:
-      - "rabbitmq-user-registration"
     image: tmokhele/vibevillerabbit
     ports:
     - "80:8080"
@@ -11,12 +9,4 @@ services:
     labels:
       io.rancher.container.pull_image: always
       id: vibevillerabbit
-  rabbitmq-user-registration:
-    image: rabbitmq:management
-    ports:
-    - 15672:15672/tcp
-    - 5672:5672/tcp
-    labels:
-      id: rabbitmq
-      io.rancher.container.pull_image: always
 
