@@ -1,7 +1,7 @@
 version: '3'
 services:
   vibevillerabbit:
-    depends_on:
+    links:
       - "rabbitmq"
     image: tmokhele/vibevillerabbit
     hostname: vibevillerabbit
