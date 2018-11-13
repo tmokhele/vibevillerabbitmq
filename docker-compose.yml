@@ -12,7 +12,7 @@ services:
       io.rancher.container.pull_image: always
       id: vibevillerabbit
   rabbitmq:
-    image: rabbitmq:3.5.3-management
+    image: rabbitmq:3-management
     ports:
     - 15672:15672/tcp
     - 5672:5672/tcp
