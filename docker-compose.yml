@@ -1,6 +1,8 @@
 version: '2'
 services:
   vibeville-user-registration:
+    depends_on:
+      - "rabbitmq-user-registration"
     image: tmokhele/vibevillerabbit
     ports:
     - "80:8080"
