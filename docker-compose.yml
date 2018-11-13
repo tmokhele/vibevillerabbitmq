@@ -1,16 +1,18 @@
 version: '2'
 services:
-  vibeville-user-registration:
+  vibevillerabbit:
     depends_on:
       - "rabbitmq"
     image: tmokhele/vibevillerabbit
+    hostname: vibevillerabbit
     ports:
     - "80:8080"
     stdin_open: true
     tty: true
     labels:
-      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_ne: sys=lb
       id: vibevillerabbit
+      app: vibevillerabbit
   rabbitmq:
     image: rabbitmq:3-management
     ports:
@@ -18,5 +20,6 @@ services:
     - 5672:5672/tcp
     labels:
       id: rabbitmq
-      io.rancher.container.pull_image: always
+      app: rabbitmq
+      io.rancher.scheduler.affinity:host_label_ne: sys=lb
 
