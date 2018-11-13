@@ -1,5 +1,14 @@
 version: '2'
 services:
+  vibeville-user-registration:
+    depends_on:
+      - "rabbitmq-user-registration"
+    image: tmokhele/vibevillerabbit
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+      id: vibevillerabbit
   rabbitmq-user-registration:
     image: rabbitmq:management
     ports:

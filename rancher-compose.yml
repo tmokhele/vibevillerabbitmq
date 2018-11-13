@@ -1,5 +1,8 @@
 version: '2'
 services:
+  vibeville-user-registration:
+    scale: 1
+    start_on_create: true
   rabbitmq-user-registration:
     scale: 1
     start_on_create: true
