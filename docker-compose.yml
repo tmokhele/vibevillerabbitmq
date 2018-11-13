@@ -1,21 +1,11 @@
-version: '3'
-services:
-  vibevillerabbit:
-    links:
-      - "rabbitmq"
-    image: tmokhele/vibevillerabbit
-    hostname: vibevillerabbit
-    ports:
-    - "8080:8080"
-    stdin_open: true
-    tty: true
-    labels:
-      io.rancher.scheduler.affinity:host_label_ne: sys=lb
-      id: vibevillerabbit
-      app: vibevillerabbit
-  rabbitmq:
-    image: rabbitmq:3.5.3-management
-    ports:
-    - "5672:5672"
-    - "15672:15672"
-
+rabbitmq:
+  image: rabbitmq:management
+  ports:
+  - "5672:5672"
+  - "15672:15672"
+vibevillerabbit:
+  image: tmokhele/vibevillerabbit
+  ports:
+  - "80:8080"
+  links:
+  - rabbitmq
