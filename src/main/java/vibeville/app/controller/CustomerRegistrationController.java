@@ -30,11 +30,11 @@ public class CustomerRegistrationController {
     public ResponseEntity userRegistration(@RequestBody User user)
     {
         customerRegistrationService.saveUser(user);
-        return  ResponseEntity.ok(HttpStatus.OK);
+        return  ResponseEntity.ok().body(user);
     }
     @GetMapping
     public ResponseEntity getRegistrationRequests()
     {
-        return ResponseEntity.ok(customerRegistrationService.getRegistrationRequests());
+        return ResponseEntity.ok().body(customerRegistrationService.getRegistrationRequests());
     }
 }

@@ -30,10 +30,7 @@ public class CustomerRegistrationServiceImpl implements CustomerRegistrationServ
 
     @Override
     public List<User> getRegistrationRequests() {
-        List<User> userList = new ArrayList<>();
-        userList.addAll(users);
-        users.clear();
-        return userList;
+        return users;
     }
 
     @RabbitListener(queues = RabbitMQConfig.USER_REGISTRATION)
