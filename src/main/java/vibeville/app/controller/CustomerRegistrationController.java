@@ -1,6 +1,8 @@
 package vibeville.app.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,8 @@ import vibeville.app.service.CustomerRegistrationService;
 @RestController
 @RequestMapping("/api/user")
 public class CustomerRegistrationController {
+
+    private static final Logger logger = LoggerFactory.getLogger(CustomerRegistrationController.class);
 
 
     private CustomerRegistrationService customerRegistrationService;
@@ -33,6 +37,7 @@ public class CustomerRegistrationController {
             customerRegistrationService.saveUser(user);
         }catch (IllegalArgumentException ex)
         {
+            logger.error("Exception: "+ex.getMessage());
             return ResponseEntity.status(HttpStatus.Series.CLIENT_ERROR.value()).body(ex);
         }
         return  ResponseEntity.ok().body(user);
