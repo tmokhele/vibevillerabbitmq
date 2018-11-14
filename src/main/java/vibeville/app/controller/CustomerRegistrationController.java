@@ -29,8 +29,12 @@ public class CustomerRegistrationController {
     @PostMapping
     public ResponseEntity userRegistration(@RequestBody User user)
     {
-
-        boolean b = customerRegistrationService.saveUser(user);
+        try {
+            customerRegistrationService.saveUser(user);
+        }catch (IllegalArgumentException ex)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex);
+        }
         return  ResponseEntity.ok().body(user);
     }
     @GetMapping
