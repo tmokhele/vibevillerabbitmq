@@ -33,7 +33,7 @@ public class CustomerRegistrationController {
             customerRegistrationService.saveUser(user);
         }catch (IllegalArgumentException ex)
         {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex);
+            return ResponseEntity.status(HttpStatus.Series.CLIENT_ERROR.value()).body(ex);
         }
         return  ResponseEntity.ok().body(user);
     }
