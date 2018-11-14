@@ -29,7 +29,8 @@ public class CustomerRegistrationController {
     @PostMapping
     public ResponseEntity userRegistration(@RequestBody User user)
     {
-        customerRegistrationService.saveUser(user);
+
+        boolean b = customerRegistrationService.saveUser(user);
         return  ResponseEntity.ok().body(user);
     }
     @GetMapping
