@@ -38,7 +38,7 @@ public class CustomerRegistrationController {
         }catch (IllegalArgumentException ex)
         {
             logger.error("Exception: "+ex.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
+            return ResponseEntity.badRequest().body(ex);
         }
         return  ResponseEntity.ok().body(user);
     }
