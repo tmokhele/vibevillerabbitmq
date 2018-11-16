@@ -47,4 +47,9 @@ public class CustomerRegistrationController {
     {
         return ResponseEntity.ok().body(customerRegistrationService.getRegistrationRequests());
     }
+
+    @PostMapping("/remove")
+    public ResponseEntity deleteById(@RequestBody User userLogin){
+        return ResponseEntity.ok().body(customerRegistrationService.deleteRequest(userLogin));
+    }
 }

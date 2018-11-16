@@ -8,6 +8,7 @@ import vibeville.app.config.RabbitMQConfig;
 import vibeville.app.model.User;
 import vibeville.app.service.CustomerRegistrationService;
 
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -35,6 +36,17 @@ public class CustomerRegistrationServiceImpl implements CustomerRegistrationServ
     @Override
     public Set<User> getRegistrationRequests() {
         return users;
+    }
+
+    @Override
+    public boolean deleteRequest(User userLogin) {
+        for (Iterator<User> it = users.iterator(); it.hasNext();) {
+            User element = it.next();
+            if (element.getEmail().equalsIgnoreCase(userLogin.getEmail())) {
+                it.remove();
+            }
+        }
+       return true;
     }
 
     @RabbitListener(queues = RabbitMQConfig.USER_REGISTRATION)

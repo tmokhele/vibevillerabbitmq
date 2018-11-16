@@ -8,4 +8,6 @@ public interface CustomerRegistrationService {
     boolean saveUser(User user) throws IllegalArgumentException;
 
     Set<User> getRegistrationRequests();
+
+    boolean deleteRequest(User userLogin);
 }
