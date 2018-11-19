@@ -24,7 +24,7 @@ public class CustomerRegistrationServiceImpl implements CustomerRegistrationServ
     }
 
     @Override
-    public boolean saveUser(User user) throws IllegalArgumentException {
+    public boolean saveUser(User user){
             if (!users.contains(user)) {
                 rabbitTemplate.convertAndSend(RabbitMQConfig.USER_REGISTRATION, user);
             }else {

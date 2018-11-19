@@ -1,8 +1,6 @@
 package vibeville.app;
 
-import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.exception.VelocityException;
 import org.springframework.amqp.core.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +9,6 @@ import org.springframework.messaging.handler.annotation.support.DefaultMessageHa
 import org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
 import java.util.Properties;
 import java.util.TimeZone;
 
@@ -49,7 +46,7 @@ public class VibeVilleRabbitClient {
     }
 
     @Bean
-    public VelocityEngine velocityEngine() throws VelocityException, IOException {
+    public VelocityEngine velocityEngine(){
         Properties properties = new Properties();
         properties.put("resource.loader", "class");
         properties.put("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");

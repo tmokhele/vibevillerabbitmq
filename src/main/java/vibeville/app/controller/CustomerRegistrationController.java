@@ -42,7 +42,7 @@ public class CustomerRegistrationController {
             customerRegistrationService.saveUser(user);
         }catch (IllegalArgumentException ex)
         {
-            logger.error("Exception: "+ex.getMessage());
+            logger.error(String.format("Exception: %s ",ex.getMessage()));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
         return  ResponseEntity.ok().body(user);
