@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vibeville.app.model.User;
 import vibeville.app.service.CustomerRegistrationService;
+import vibeville.app.service.EmailService;
+
+import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("/api/user")
@@ -18,10 +21,12 @@ public class CustomerRegistrationController {
 
 
     private CustomerRegistrationService customerRegistrationService;
+    private EmailService emailService;
 
     @Autowired
-    public CustomerRegistrationController(CustomerRegistrationService customerRegistrationService) {
+    public CustomerRegistrationController(CustomerRegistrationService customerRegistrationService,EmailService emailService) {
         this.customerRegistrationService = customerRegistrationService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/ping")
@@ -51,5 +56,10 @@ public class CustomerRegistrationController {
     @PostMapping("/remove")
     public ResponseEntity deleteById(@RequestBody User userLogin){
         return ResponseEntity.ok().body(customerRegistrationService.deleteRequest(userLogin));
+    }
+
+    @PostMapping("/send")
+    public ResponseEntity sendNotification(@RequestBody User userLogin) throws MessagingException {
+        return ResponseEntity.ok().body(emailService.sendSimpleMessage(userLogin.getEmail()));
     }
 }
