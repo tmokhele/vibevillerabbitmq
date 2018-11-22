@@ -20,6 +20,7 @@ public class CustomerEmailController {
     @PostMapping
     public ResponseEntity messageConfirmation(@RequestBody SNSMessage message, @RequestHeader(value="x-amz-sns-message-type") String messageType)
     {
+
         if (messageType!=null && messageType.equalsIgnoreCase("Notification"))
         {
             this.customerRegistrationService.saveMessage(message);
