@@ -1,5 +1,7 @@
 package vibeville.app.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cloud.aws.messaging.endpoint.NotificationStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,7 @@ import org.springframework.cloud.aws.messaging.endpoint.annotation.NotificationU
 @Controller
 @RequestMapping("/topic-subscriber")
 public class SNSEndpointController {
-
+    private static final Logger logger = LoggerFactory.getLogger(SNSEndpointController.class);
     @NotificationSubscriptionMapping
     public void confirmUnsubscribeMessage(
             NotificationStatus notificationStatus) {
@@ -28,6 +30,7 @@ public class SNSEndpointController {
     @NotificationUnsubscribeConfirmationMapping
     public void confirmSubscriptionMessage(
             NotificationStatus notificationStatus) {
+        logger.info("notification" +notificationStatus.toString());
         notificationStatus.confirmSubscription();
     }
 }
