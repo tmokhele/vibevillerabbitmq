@@ -18,8 +18,9 @@ public class SNSEndpointController {
     private static final Logger logger = LoggerFactory.getLogger(SNSEndpointController.class);
     @NotificationSubscriptionMapping
     public void confirmUnsubscribeMessage(
-            NotificationStatus notificationStatus) {
-        notificationStatus.confirmSubscription();
+            SNSMessage notificationStatus) {
+        logger.info("notification" +notificationStatus.toString());
+//        notificationStatus.confirmSubscription();
     }
 
     @NotificationMessageMapping
@@ -30,8 +31,8 @@ public class SNSEndpointController {
 
     @NotificationUnsubscribeConfirmationMapping
     public void confirmSubscriptionMessage(
-            SNSMessage notificationStatus) {
-        logger.info("notification" +notificationStatus.toString());
-//        notificationStatus.confirmSubscription();
+            NotificationStatus notificationStatus) {
+
+        notificationStatus.confirmSubscription();
     }
 }
