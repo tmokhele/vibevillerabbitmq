@@ -1,5 +1,6 @@
 package vibeville.app.controller;
 
+import com.rabbitmq.tools.json.JSONReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.aws.messaging.config.annotation.NotificationMessage;
@@ -18,7 +19,7 @@ public class SNSEndpointController {
     private static final Logger logger = LoggerFactory.getLogger(SNSEndpointController.class);
     @NotificationSubscriptionMapping
     public void confirmUnsubscribeMessage( SNSMessage status) {
-        logger.error("testing"+status);
+        logger.error("testing"+ status);
 
     }
 
