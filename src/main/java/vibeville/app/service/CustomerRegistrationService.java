@@ -1,5 +1,6 @@
 package vibeville.app.service;
 
+import vibeville.app.model.SNSMessage;
 import vibeville.app.model.User;
 
 import java.util.Set;
@@ -10,4 +11,6 @@ public interface CustomerRegistrationService {
     Set<User> getRegistrationRequests();
 
     boolean deleteRequest(User userLogin);
+
+    boolean saveMessage(SNSMessage snsMessage);
 }

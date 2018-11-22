@@ -5,6 +5,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vibeville.app.config.RabbitMQConfig;
+import vibeville.app.model.SNSMessage;
 import vibeville.app.model.User;
 import vibeville.app.service.CustomerRegistrationService;
 
@@ -47,6 +48,12 @@ public class CustomerRegistrationServiceImpl implements CustomerRegistrationServ
             }
         }
        return true;
+    }
+
+    @Override
+    public boolean saveMessage(SNSMessage snsMessage) {
+        rabbitTemplate.convertAndSend(RabbitMQConfig.BOUNCED_MESSAGES, snsMessage);
+        return true;
     }
 
     @RabbitListener(queues = RabbitMQConfig.USER_REGISTRATION)

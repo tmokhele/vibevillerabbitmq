@@ -17,12 +17,24 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
     public static final String USER_REGISTRATION = "user-registration-queue";
     private static final String EXCHANGE_USER_REGISTRATION = "user-registration-exchange";
 
+    public static final String BOUNCED_MESSAGES = "bounced-registration-messages";
+    private static final String EXCHANGE_BOUNCED_MESSAGES = "bounced-registration-messages-exchange";
+
     @Bean
     Queue userRegistrationQueue() {
 
         return QueueBuilder.durable(USER_REGISTRATION)
                 .withArgument("x-dead-letter-exchange", "")
                 .withArgument("x-dead-letter-routing-key", USER_REGISTRATION_REPROCESS)
+                .build();
+    }
+
+    @Bean
+    Queue bouncedMessagesQueue() {
+
+        return QueueBuilder.durable(BOUNCED_MESSAGES)
+                .withArgument("x-dead-letter-exchange", "")
+                .withArgument("x-dead-letter-routing-key", EXCHANGE_BOUNCED_MESSAGES)
                 .build();
     }
 
@@ -35,6 +47,8 @@ public class RabbitMQConfig implements RabbitListenerConfigurer {
     TopicExchange userRegistrationExchange() {
         return new TopicExchange(EXCHANGE_USER_REGISTRATION);
     }
+
+
 
     @Bean
     Binding bindingPublisher(Queue userRegistrationQueue, TopicExchange publisherExchange) {
