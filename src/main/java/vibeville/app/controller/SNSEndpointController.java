@@ -1,5 +1,7 @@
 package vibeville.app.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.tools.json.JSONReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +20,9 @@ import vibeville.app.model.SNSMessage;
 public class SNSEndpointController {
     private static final Logger logger = LoggerFactory.getLogger(SNSEndpointController.class);
     @NotificationSubscriptionMapping
-    public void confirmUnsubscribeMessage( SNSMessage status) {
-        logger.error("testing"+ status);
+    public void confirmUnsubscribeMessage( SNSMessage status) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        logger.error("testing"+ mapper.writeValueAsString(status));
 
     }
 
