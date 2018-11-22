@@ -4,6 +4,8 @@ import org.apache.velocity.app.VelocityEngine;
 import org.springframework.amqp.core.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 import org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory;
@@ -12,7 +14,7 @@ import javax.annotation.PostConstruct;
 import java.util.Properties;
 import java.util.TimeZone;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = { RedisAutoConfiguration.class, RedisRepositoriesAutoConfiguration.class })
 public class VibeVilleRabbitClient {
 
     public static final String USER_REGISTRATION_REPROCESS = "reprocessing-user-registration-queue";
