@@ -10,6 +10,7 @@ import org.springframework.cloud.aws.messaging.config.annotation.NotificationSub
 import org.springframework.cloud.aws.messaging.endpoint.annotation.NotificationMessageMapping;
 import org.springframework.cloud.aws.messaging.endpoint.annotation.NotificationSubscriptionMapping;
 import org.springframework.cloud.aws.messaging.endpoint.annotation.NotificationUnsubscribeConfirmationMapping;
+import vibeville.app.model.SNSMessage;
 
 @Controller
 @RequestMapping("/topic-subscriber")
@@ -29,8 +30,8 @@ public class SNSEndpointController {
 
     @NotificationUnsubscribeConfirmationMapping
     public void confirmSubscriptionMessage(
-            NotificationStatus notificationStatus) {
+            SNSMessage notificationStatus) {
         logger.info("notification" +notificationStatus.toString());
-        notificationStatus.confirmSubscription();
+//        notificationStatus.confirmSubscription();
     }
 }
