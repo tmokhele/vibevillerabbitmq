@@ -17,7 +17,7 @@ import vibeville.app.model.SNSMessage;
 public class SNSEndpointController {
     private static final Logger logger = LoggerFactory.getLogger(SNSEndpointController.class);
     @NotificationSubscriptionMapping
-    public void confirmUnsubscribeMessage( NotificationStatus status) {
+    public void confirmUnsubscribeMessage( SNSMessage status) {
         logger.error("testing");
 
     }
