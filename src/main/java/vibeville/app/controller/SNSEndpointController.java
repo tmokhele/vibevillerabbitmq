@@ -18,6 +18,7 @@ public class SNSEndpointController {
     private static final Logger logger = LoggerFactory.getLogger(SNSEndpointController.class);
     @NotificationSubscriptionMapping
     public void confirmUnsubscribeMessage( NotificationStatus status) {
+        logger.error("testing");
 
     }
 
