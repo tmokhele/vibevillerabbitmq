@@ -22,11 +22,11 @@ public class SNSServiceImpl implements SNSService {
 
     private static final Logger logger = LoggerFactory.getLogger(SNSServiceImpl.class);
 
-    @Value("${AWS_ACCESS_KEY_ID}")
+    @Value("${KEY_ID}")
     private String awsAccessKeyId;
-    @Value("${AWS_SECRET_ACCESS_KEY}")
+    @Value("${ACCESS_KEY}")
     private String awsAccessKeySecret;
-    @Value("${AWS_REGION}")
+    @Value("${REGION}")
     private String awsRegion;
 
     private AmazonSNS snsClient;
