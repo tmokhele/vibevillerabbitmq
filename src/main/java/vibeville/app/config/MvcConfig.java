@@ -2,7 +2,6 @@ package vibeville.app.config;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
-import org.springframework.cloud.aws.messaging.endpoint.NotificationMessageHandlerMethodArgumentResolver;
 import org.springframework.cloud.aws.messaging.endpoint.NotificationStatusHandlerMethodArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

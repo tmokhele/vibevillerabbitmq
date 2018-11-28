@@ -22,11 +22,11 @@ public class SNSServiceImpl implements SNSService {
 
     private static final Logger logger = LoggerFactory.getLogger(SNSServiceImpl.class);
 
-    @Value("${KEY_ID}")
+    @Value("${serviceId}")
     private String awsAccessKeyId;
-    @Value("${ACCESS_KEY}")
+    @Value("${serviceKey}")
     private String awsAccessKeySecret;
-    @Value("${REGION}")
+    @Value("${serviceRegion}")
     private String awsRegion;
 
     private AmazonSNS snsClient;
@@ -52,8 +52,7 @@ public class SNSServiceImpl implements SNSService {
     }
 
     @Override
-    public void subscribeSNSToTopic(String topicArn, String phoneNumber) {
-        String protocol = "sms";
+    public void subscribeSNSToTopic(String topicArn,  String protocol, String phoneNumber) {
         SubscribeRequest subscribeRequest = new SubscribeRequest(topicArn, protocol, phoneNumber);
         SubscribeResult subscribeResult = snsClient.subscribe(subscribeRequest);
 
@@ -67,13 +66,13 @@ public class SNSServiceImpl implements SNSService {
         Map<String, MessageAttributeValue> smsAttributes =
                 new HashMap<>();
         smsAttributes.put("AWS.SNS.SMS.SenderID", new MessageAttributeValue()
-                .withStringValue("mySenderID") //The sender ID shown on the device.
+                .withStringValue("mySenderID")
                 .withDataType("String"));
         smsAttributes.put("AWS.SNS.SMS.MaxPrice", new MessageAttributeValue()
-                .withStringValue("0.50") //Sets the max price to 0.50 USD.
+                .withStringValue("0.50")
                 .withDataType("Number"));
         smsAttributes.put("AWS.SNS.SMS.SMSType", new MessageAttributeValue()
-                .withStringValue("Promotional") //Sets the type to promotional.
+                .withStringValue("Promotional")
                 .withDataType("String"));
 
         PublishResult publishResult = snsClient.publish(new PublishRequest()
